@@ -1,0 +1,2 @@
+class Trie {
+    private final Node root;

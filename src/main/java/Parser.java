@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
-    @Argument(metaVar = "Arguments", required = true)
+    @Argument(required = true, metaVar = "Arguments")
     private List<String> listOfArguments = new ArrayList<>();
 
     @Option(name = "-c", usage = "Returns SumSize", metaVar = "sum")
@@ -34,7 +34,17 @@ public class Parser {
             return 1;
         }
 
-
+        Du dudu = new Du();
+        try {
+            listOfArguments.remove("Noo");
+            dudu.sum(c, h, si, listOfArguments);
+        } catch (
+                IllegalArgumentException e) {
+            System.err.println("No such file");
+            return 1;
+        }
+        return 0;
+    }
 }
 
 

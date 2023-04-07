@@ -18,10 +18,10 @@ public class Du {
         if (!file.exists()) {
             throw new IllegalArgumentException();
         } else {
-            if (file.isDirectory()) {
-                return directorySize(file);
-            } if (file.isFile()) {
+            if (file.isFile()) {
                 return file.length();
+            } else if (file.isDirectory()) {
+                return directorySize(file);
             }
         }
         return 0;
@@ -29,24 +29,22 @@ public class Du {
 
     int num = 1024;
     public List<String> bases = Arrays.asList("B","KB", "MB", "GB");
-
-
+    private long size = 0;
 
     public void sum (boolean c, boolean h, boolean si, List<String> file) {
-        long size = 0;
         for (int i = 0; i <= file.size(); i++) {
             long fileSize = objectSize(file.get(i));
             if (c)
                 size += fileSize;
             else
-                System.out.println(file.get(i) + read(size, si, h, false));
+                System.out.println(file.get(i) + read(size, si, h));
         }
         if (c)
-            System.out.println("Sum of files = " + read(size, si, h, true));
+            System.out.println("Sum of files = " + read(size, si, h));
     }
 
 
-    public String read(Long size, boolean si, boolean h, boolean c) {
+    public String read(long size, boolean si, boolean h) {
         StringBuilder res = new StringBuilder();
         int index = 0;
         if (si)
@@ -58,7 +56,8 @@ public class Du {
             }
             res.append(size);
             res.append(bases.get(index));
-        } else
+        }
+        else
             res.append(Math.max(1, size / num));
         return res.toString();
     }

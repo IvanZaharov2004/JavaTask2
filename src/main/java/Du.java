@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Du {
 
-    public long directorySize(File dir) {
+    public Long directorySize(File dir) {
         long size = 0;
         for (File file : Objects.requireNonNull(dir.listFiles())) {
             size += file.length();
@@ -27,28 +27,26 @@ public class Du {
         return 0;
     }
 
+    public List<String> bases = Arrays.asList("B", "KB", "MB", "GB");
+    long size = 0;
+    int index = 0;
     int num = 1024;
-    public List<String> bases = Arrays.asList("B","KB", "MB", "GB");
-    private long size = 0;
 
     public void sum (boolean c, boolean h, boolean si, List<String> file) {
-        for (int i = 0; i <= file.size(); i++) {
-            long fileSize = objectSize(file.get(i));
+        for (String str : file) {
+            long fileSize = objectSize(str);
             if (c)
                 size += fileSize;
             else
-                System.out.println(file.get(i) + read(size, si, h));
+                System.out.println(str + " = " + read(fileSize, si, h));
         }
         if (c)
             System.out.println("Sum of files = " + read(size, si, h));
     }
 
-
     public String read(long size, boolean si, boolean h) {
         StringBuilder res = new StringBuilder();
-        int index = 0;
-        if (si)
-            num = 1000;
+        if (si) num = 1000;
         if (h) {
             while (size >= num && index <= 3) {
                 size /= num;
@@ -56,8 +54,7 @@ public class Du {
             }
             res.append(size);
             res.append(bases.get(index));
-        }
-        else
+        } else
             res.append(Math.max(1, size / num));
         return res.toString();
     }

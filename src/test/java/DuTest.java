@@ -4,15 +4,6 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DuTest {
-    public String actual(String cmd) throws Exception {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        PrintStream print = new PrintStream(stream);
-        System.setOut(print);
-        Parser.main(cmd.split(" "));
-        System.out.flush();
-        System.setOut(System.out);
-        return stream.toString();
-    }
 
     @Test
     void test1() throws Exception {
@@ -30,9 +21,18 @@ public class DuTest {
     void test3() throws Exception {
         assertEquals("Sum of files = 4KB\r\n", actual("du -h --si -c src/test/resources "));
     }
-
     @Test
     void test4() throws Exception {
         assertEquals("src/test/resources = 4KB\r\n", actual("du -h src/test/resources"));
+    }
+
+    public String actual(String cmd) throws Exception {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        PrintStream print = new PrintStream(stream);
+        System.setOut(print);
+        Parser.main(cmd.split(" "));
+        System.out.flush();
+        System.setOut(System.out);
+        return stream.toString();
     }
 }

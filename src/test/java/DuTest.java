@@ -7,7 +7,7 @@ public class DuTest {
 
     @Test
     void test1() throws Exception {
-        assertEquals("Sum of files = 1\r\n", actual("du -c src/test/resources/file1.txt src/test/resources/file2.txt"));
+        assertEquals("Sum of files = 2\r\n", actual("du -c src/test/resources/file2.txt src/test/resources/file4.txt"));
     }
     @Test
     void test2() throws Exception {
@@ -27,12 +27,12 @@ public class DuTest {
     }
 
     public String actual(String cmd) throws Exception {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        PrintStream print = new PrintStream(stream);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream print = new PrintStream(output);
         System.setOut(print);
         Parser.main(cmd.split(" "));
         System.out.flush();
         System.setOut(System.out);
-        return stream.toString();
+        return output.toString();
     }
 }

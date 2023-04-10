@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Du {
-
+    // размер директории
     public Long directorySize(File dir) {
         long size = 0;
         for (File file : Objects.requireNonNull(dir.listFiles())) {
@@ -12,7 +12,7 @@ public class Du {
         }
         return size;
     }
-
+    // размер объекта
     public long objectSize(String input) {
         File file = new File(input);
         if (!file.exists()) {
@@ -31,7 +31,7 @@ public class Du {
     long size = 0;
     int index = 0;
     int num = 1024;
-
+    //флаг -С
     public void sum (boolean c, boolean h, boolean si, List<String> file) {
         for (String str : file) {
             long fileSize = objectSize(str);
@@ -43,7 +43,7 @@ public class Du {
         if (c)
             System.out.println("Sum of files = " + read(size, si, h));
     }
-
+    // флаги --si и -h
     public String read(long size, boolean si, boolean h) {
         StringBuilder res = new StringBuilder();
         if (si) num = 1000;

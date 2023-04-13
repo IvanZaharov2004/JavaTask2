@@ -19,7 +19,7 @@ public class DuTest {
     }
     @Test
     void test3() throws Exception {
-        assertEquals("Sum of files = 4KB\r\n", actual("du -h --si -c src/test/resources "));
+        assertEquals("Sum of files = 4KB\r\n", actual("du -h --si -c src/test/resources"));
     }
     @Test
     void test4() throws Exception {
@@ -31,8 +31,6 @@ public class DuTest {
         PrintStream print = new PrintStream(output);
         System.setOut(print);
         Parser.main(cmd.split(" "));
-        System.out.flush();
-        System.setOut(System.out);
         return output.toString();
     }
 }

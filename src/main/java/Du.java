@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Du {
     // размер директории
-    public Long directorySize(File dir) {
+    private Long directorySize(File dir) {
         long size = 0;
         for (File file : Objects.requireNonNull(dir.listFiles())) {
             size += file.length();
@@ -13,7 +13,7 @@ public class Du {
         return size;
     }
     // размер объекта
-    public long objectSize(String input) {
+    private long objectSize(String input) {
         File file = new File(input);
         if (!file.exists()) {
             throw new IllegalArgumentException();
@@ -27,12 +27,12 @@ public class Du {
         return 0;
     }
 
-    public List<String> bases = Arrays.asList("B", "KB", "MB", "GB");
+    private static final List<String> bases = Arrays.asList("B", "KB", "MB", "GB");
     long size = 0;
     int index = 0;
     int num = 1024;
     //флаг -С
-    public void sum (boolean c, boolean h, boolean si, List<String> file) {
+    void sum(boolean c, boolean h, boolean si, List<String> file) {
         for (String str : file) {
             long fileSize = objectSize(str);
             if (c)
@@ -44,7 +44,7 @@ public class Du {
             System.out.println("Sum of files = " + read(size, si, h));
     }
     // флаги --si и -h
-    public String read(long size, boolean si, boolean h) {
+    private String read(long size, boolean si, boolean h) {
         StringBuilder res = new StringBuilder();
         if (si) num = 1000;
         if (h) {

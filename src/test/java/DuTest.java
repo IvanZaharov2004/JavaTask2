@@ -25,7 +25,7 @@ public class DuTest {
     void test4() throws Exception {
         assertEquals("src/test/resources = 4KB\r\n", actual("du -h src/test/resources"));
     }
-
+    //перевод байт в строку
     public String actual(String cmd) throws Exception {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintStream print = new PrintStream(output);
